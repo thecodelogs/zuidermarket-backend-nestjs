@@ -1,4 +1,5 @@
 import 'dotenv/config';
+import * as nodeConfig from 'config';
 import { AuditInterceptor } from './interceptors/audit.interceptor';
 import { NestFactory } from '@nestjs/core';
 import { CrudConfigService } from '@nestjsx/crud';
@@ -21,22 +22,40 @@ CrudConfigService.load({
     },
 });
 
+function logDatabaseConfig(source: string): void {
+    const envDb = {
+        NODE_ENV: process.env.NODE_ENV,
+        DB_TYPE: process.env.DB_TYPE,
+        DB_HOST: process.env.DB_HOST,
+        DB_PORT: process.env.DB_PORT,
+        DB_USERNAME: process.env.DB_USERNAME,
+        DB_DATABASE: process.env.DB_DATABASE,
+        DB_PASSWORD_SET: Boolean(process.env.DB_PASSWORD),
+    };
+    const resolvedOrm = nodeConfig.get<{ host?: string }>('app.orm');
+
+    // eslint-disable-next-line no-console
+    console.log(`[${source}] process.env DB vars:`, envDb);
+    // eslint-disable-next-line no-console
+    console.log(`[${source}] config package app.orm.host:`, resolvedOrm?.host);
+}
+
 async function bootstrap() {
+    logDatabaseConfig('bootstrap-before-nest');
+
     const app = await NestFactory.create(AppModule);
     const configService = app.get(ConfigService);
     const logger = app.get(WINSTON_MODULE_NEST_PROVIDER);
 
+    logDatabaseConfig('bootstrap-after-nest');
+    logger.warn(
+        `DB host in use: ${configService.config.orm.host} (env DB_HOST=${process.env.DB_HOST ?? 'not set'})`,
+        'Main',
+    );
     logger.warn(
         `${configService.appName} ${configService.appVersion} started`,
         'Main',
     );
-
-
-    console.log({
-        host: process.env.DB_HOST,
-        user: process.env.DB_USER,
-        password: process.env.DB_PASSWORD,
-      });
 
     app.useLogger(logger);
 
