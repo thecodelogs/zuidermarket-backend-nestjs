@@ -31,6 +31,13 @@ async function bootstrap() {
         'Main',
     );
 
+
+    console.log({
+        host: process.env.DB_HOST,
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+      });
+
     app.useLogger(logger);
 
     app.enableCors({
