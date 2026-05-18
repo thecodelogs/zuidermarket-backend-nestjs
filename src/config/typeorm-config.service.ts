@@ -42,6 +42,16 @@ export class TypeOrmConfigService implements TypeOrmOptionsFactory {
         );
 
         // @ts-ignore
-        return this.config;
+        return {
+            ...this.config,
+            ssl: {
+                rejectUnauthorized: false,
+            },
+            extra: {
+                ssl: {
+                    rejectUnauthorized: false,
+                },
+            },
+        };
     }
 }
