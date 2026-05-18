@@ -1,0 +1,65 @@
+{
+  "app": {
+    "port": "PORT",
+    "apiUrl": "API_URL",
+    "enableDocs": "ENABLE_DOCS",
+    "frontendUrl": "FRONTEND_URL",
+    "jwt": {
+      "accessToken": {
+        "secret": "JWT_SECRET",
+        "expiresIn": "JWT_EXPIRES_IN"
+      }
+    },
+    "mail": {
+      "from": "MAIL_FROM",
+      "smtpTransportOptions": {
+        "host": "SMTP_HOST",
+        "port": "SMTP_PORT",
+        "auth": {
+          "user": "SMTP_USER",
+          "pass": "SMTP_PASS"
+        },
+        "tls": {
+          "rejectUnauthorized": "SMTP_TLS_REJECT_UNAUTHORIZED"
+        }
+      }
+    },
+    "logging": {
+      "level": "LOG_LEVEL",
+      "file": {
+        "path": "LOG_FILE_PATH",
+        "level": "LOG_FILE_LEVEL"
+      },
+      "console": {
+        "level": "LOG_CONSOLE_LEVEL"
+      },
+      "slack": {
+        "webhookUrl": "SLACK_WEBHOOK_URL",
+        "level": "SLACK_LOG_LEVEL",
+        "channel": "SLACK_CHANNEL"
+      }
+    },
+    "orm": {
+      "type": "DB_TYPE",
+      "host": "DB_HOST",
+      "port": "DB_PORT",
+      "username": "DB_USERNAME",
+      "password": "DB_PASSWORD",
+      "database": "DB_DATABASE",
+      "synchronize": "DB_SYNCHRONIZE",
+      "logging": "DB_LOGGING"
+    },
+    "mollie": {
+      "apiKey": "MOLLIE_API_KEY"
+    },
+    "weather": {
+      "apiKey": "WEATHER_API_KEY"
+    },
+    "queue": {
+      "redis": {
+        "host": "REDIS_HOST",
+        "port": "REDIS_PORT"
+      }
+    }
+  }
+}

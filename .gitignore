@@ -32,16 +32,11 @@ lerna-debug.log*
 !.vscode/launch.json
 !.vscode/extensions.json
 
-# Secrets
-/config
-!config/default.json
-!config/custom-environment-variables.json
 
 # Redis
 dump.rdb
 
-# rutger
-src/auth/auth.service.ts
+
 
 # private keys
 .env

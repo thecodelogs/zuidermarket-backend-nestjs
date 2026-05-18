@@ -1,0 +1,58 @@
+{
+  "//Description": "This file is ONLY used for local development.",
+  "app": {
+    "port": 3000,
+    "apiUrl": "https://api-test.zuidermakkie.nl",
+    "enableDocs": true,
+    "frontendUrl": "http://localhost:4203",
+    "jwt": {
+      "accessToken": {
+        "secret": "mysecret2",
+        "expiresIn": "1h"
+      }
+    },
+	"//Mail_description": "Currently using DevNullSmtp.",
+    "mail": {
+      "smtpTransportOptions": {
+        "host": "localhost",
+        "port": 25,
+        "tls": {
+          "rejectUnauthorized": false
+        }
+      }
+    },
+	"//Logging_description": "Very useful log, found in logs/",
+    "logging": {
+      "level": "debug",
+      "file": {
+        "path": "logs/combined.log"
+      },
+      "slack": false
+    },
+    "orm": {
+      "type": "mysql",
+      "host": "localhost",
+      "port": 3306,
+      "username": "root",
+      "database": "zmakkie",
+      "password": "SqlSql1212",
+      "entities": ["dist/**/*.entity.js"],
+      "synchronize": true,
+      "logging": true
+    },
+	"//Mollie_description": "Mollie API key, found on the Mollie Dashboard. Also requires ngrok.",
+    "mollie": {
+      "apiKey": ""
+    },
+	"//Weather_description": "No idea",
+    "weather": {
+      "apiKey": "key_here"
+    },
+	"//Redis_description": "Not sure why I use it?",
+    "queue": {
+      "redis": {
+        "port": 6379
+      }
+    }
+  }
+}
