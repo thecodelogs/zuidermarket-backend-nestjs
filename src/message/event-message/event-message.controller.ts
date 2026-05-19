@@ -16,6 +16,7 @@ import { RoleGuard } from 'src/guards/role.guard';
 import { EventMessageDto } from './event-message.dto';
 import { EventMessage } from './event-message.entity';
 import { EventMessageService } from './event-message.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Crud({
@@ -38,6 +39,7 @@ import { EventMessageService } from './event-message.service';
         },
     },
 })
+@ApiBearerAuth()
 @Controller('event-message')
 export class EventMessageController implements CrudController<EventMessage> {
     constructor(public service: EventMessageService) {}

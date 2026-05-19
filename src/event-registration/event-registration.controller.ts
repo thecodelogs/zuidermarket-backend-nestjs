@@ -14,9 +14,11 @@ import { RoleGuard } from 'src/guards/role.guard';
 import { IUserJwt } from 'src/user/interfaces/user-jwt.interface';
 import { SubmitRegistrationsDto } from './dto/submit-registrations.dto';
 import { EventRegistrationService } from './event-registration.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Roles('market-lead')
+@ApiBearerAuth()
 @Controller('event-registration')
 export class EventRegistrationController {
     constructor(private service: EventRegistrationService) {}

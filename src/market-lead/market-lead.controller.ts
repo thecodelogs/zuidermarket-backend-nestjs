@@ -14,9 +14,11 @@ import { Roles } from 'src/decorators/role.decorator';
 import { RoleGuard } from 'src/guards/role.guard';
 import { from, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Roles('market-lead', 'market-lead-assistant')
+@ApiBearerAuth()
 @Controller('market-lead')
 export class MarketLeadController {
     constructor(private userService: UserService) {}

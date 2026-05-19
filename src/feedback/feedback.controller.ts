@@ -5,6 +5,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Crud, CrudController, CrudAuth } from '@nestjsx/crud';
 import { Feedback } from './feedback.entity';
 import { FeedbackService } from './feedback.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard())
 @Crud({
@@ -35,6 +36,7 @@ import { FeedbackService } from './feedback.service';
         userId: user.id,
     }),
 })
+@ApiBearerAuth()
 @Controller('feedback')
 export class FeedbackController implements CrudController<Feedback> {
     constructor(public service: FeedbackService) {}

@@ -5,6 +5,7 @@ import { Roles } from './../../decorators/role.decorator';
 import { RoleGuard } from './../../guards/role.guard';
 import { AuthGuard } from '@nestjs/passport';
 import { Controller, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Roles('admin', 'planner')
@@ -78,6 +79,7 @@ import { Controller, UseGuards } from '@nestjs/common';
         deleteOneBase: { decorators: [Roles('admin', 'planner')] },
     },
 })
+@ApiBearerAuth()
 @Controller('event-admin')
 export class EventAdminController implements CrudController<CalendarEvent> {
     constructor(public service: EventService) {}

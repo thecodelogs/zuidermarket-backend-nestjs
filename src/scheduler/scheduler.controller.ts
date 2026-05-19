@@ -4,9 +4,11 @@ import { Roles } from 'src/decorators/role.decorator';
 import { RoleGuard } from 'src/guards/role.guard';
 import { SchedulerService } from './scheduler.service';
 import { CalendarEvent } from 'src/event/event.entity';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Roles('admin', 'planner')
+@ApiBearerAuth()
 @Controller('scheduler')
 export class SchedulerController {
     constructor(private schedulerService: SchedulerService) {}

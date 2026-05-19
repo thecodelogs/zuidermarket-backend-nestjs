@@ -5,6 +5,7 @@ import { AuthGuard } from '@nestjs/passport';
 import { Crud, CrudController } from '@nestjsx/crud';
 import { UserService } from 'src/user/user.service';
 import { User } from './../user.entity';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Roles(
@@ -32,6 +33,7 @@ import { User } from './../user.entity';
         only: ['getManyBase'],
     },
 })
+@ApiBearerAuth()
 @Controller('user-search')
 export class UserSearchController implements CrudController<User> {
     constructor(public service: UserService) {}

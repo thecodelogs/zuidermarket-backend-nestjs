@@ -16,6 +16,7 @@ import { UserRole } from 'src/user/types/user-role.type';
 import { StaffMessageService } from './staff-message.service';
 import { AuthUser } from 'src/decorators/auth-user.decorator';
 import { IUserJwt } from 'src/user/interfaces/user-jwt.interface';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 const staffRoles: UserRole[] = [
     'admin',
@@ -49,6 +50,7 @@ const staffRoles: UserRole[] = [
         },
     },
 })
+@ApiBearerAuth()
 @Controller('staff-message')
 export class StaffMessageController implements CrudController<StaffMessage> {
     constructor(public service: StaffMessageService) {}

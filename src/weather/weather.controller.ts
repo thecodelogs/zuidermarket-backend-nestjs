@@ -8,8 +8,10 @@ import {
 } from '@nestjs/common';
 import { WeatherService } from './weather.service';
 import { AuthGuard } from '@nestjs/passport';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard())
+@ApiBearerAuth()
 @Controller('weather')
 export class WeatherController {
     constructor(private weatherService: WeatherService) {}

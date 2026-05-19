@@ -9,6 +9,7 @@ import {
 } from '@nestjsx/crud';
 import { Team } from './team.entity';
 import { TeamService } from './team.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Crud({
     model: {
@@ -31,6 +32,7 @@ export class TeamController implements CrudController<Team> {
         return this.service.getNames();
     }
 
+    @ApiBearerAuth()
     @UseGuards(AuthGuard())
     @Override()
     getMany(@ParsedRequest() req: CrudRequest) {

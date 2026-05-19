@@ -11,6 +11,7 @@ import { Roles } from 'src/decorators/role.decorator';
 import { RoleGuard } from 'src/guards/role.guard';
 import { Team } from '../team.entity';
 import { TeamService } from '../team.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Roles('admin', 'member-admin', 'planner')
@@ -32,6 +33,7 @@ import { TeamService } from '../team.service';
         },
     },
 })
+@ApiBearerAuth()
 @Controller('team-admin')
 export class TeamAdminController implements CrudController<Team> {
     constructor(public service: TeamService) {}

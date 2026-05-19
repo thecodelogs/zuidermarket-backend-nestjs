@@ -5,6 +5,7 @@ import { Crud, CrudController } from '@nestjsx/crud';
 import { Roles } from 'src/decorators/role.decorator';
 import { RoleGuard } from 'src/guards/role.guard';
 import { User } from '../user.entity';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Roles('admin', 'member-admin')
@@ -24,6 +25,7 @@ import { User } from '../user.entity';
         },
     },
 })
+@ApiBearerAuth()
 @Controller('user-admin')
 export class UserAdminController implements CrudController<User> {
     constructor(public service: UserService) {}

@@ -5,6 +5,7 @@ import { RoleGuard } from './../../guards/role.guard';
 import { AuthGuard } from '@nestjs/passport';
 import { Controller, UseGuards } from '@nestjs/common';
 import { Crud, CrudController } from '@nestjsx/crud';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Roles('planner', 'admin')
@@ -28,6 +29,7 @@ import { Crud, CrudController } from '@nestjsx/crud';
         },
     },
 })
+@ApiBearerAuth()
 @Controller('event-registration-admin')
 export class EventRegistrationAdminController
     implements CrudController<EventRegistration>

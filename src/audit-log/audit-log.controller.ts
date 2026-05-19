@@ -5,6 +5,7 @@ import { Roles } from './../decorators/role.decorator';
 import { RoleGuard } from './../guards/role.guard';
 import { AuthGuard } from '@nestjs/passport';
 import { Controller, UseGuards } from '@nestjs/common';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Roles('admin')
@@ -22,6 +23,7 @@ import { Controller, UseGuards } from '@nestjs/common';
     },
     routes: { only: ['getManyBase', 'getOneBase'] },
 })
+@ApiBearerAuth()
 @Controller('audit-log')
 export class AuditLogController implements CrudController<AuditLogLine> {
     constructor(public service: AuditLogService) {}

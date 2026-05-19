@@ -7,6 +7,7 @@ import { RoleGuard } from '../guards/role.guard';
 import { Roles } from '../decorators/role.decorator';
 import { AuthUser } from '../decorators/auth-user.decorator';
 import { IUserJwt } from '../user/interfaces/user-jwt.interface';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Crud({
@@ -67,6 +68,7 @@ import { IUserJwt } from '../user/interfaces/user-jwt.interface';
         deleteOneBase: { decorators: [Roles('admin', 'planner')] },
     },
 })
+@ApiBearerAuth()
 @Controller('event')
 export class EventController implements CrudController<CalendarEvent> {
     constructor(public service: EventService) {}

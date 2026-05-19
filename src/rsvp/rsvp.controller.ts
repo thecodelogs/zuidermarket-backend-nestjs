@@ -17,6 +17,7 @@ import { Roles } from '../decorators/role.decorator';
 import { IUserJwt } from '../user/interfaces/user-jwt.interface';
 import { AuthUser } from '../decorators/auth-user.decorator';
 import { CreateOwnRsvpDto } from './dto/create-own-rsvp.dto';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
 @Crud({
@@ -45,6 +46,7 @@ import { CreateOwnRsvpDto } from './dto/create-own-rsvp.dto';
         },
     },
 })
+@ApiBearerAuth()
 @Controller('rsvp')
 export class RsvpController implements CrudController<Rsvp> {
     constructor(public service: RsvpService) {}

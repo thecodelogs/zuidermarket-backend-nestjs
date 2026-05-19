@@ -22,8 +22,10 @@ import { UpdateTeamMemberDto } from './dto/update-team-member.dto';
 import { ViewOwnUserDto } from './dto/view-own-user.dto';
 import { IUserJwt } from './interfaces/user-jwt.interface';
 import { UserService } from './user.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @UseGuards(AuthGuard(), RoleGuard)
+@ApiBearerAuth()
 @Controller('user')
 export class UserController {
     constructor(public service: UserService) {}
