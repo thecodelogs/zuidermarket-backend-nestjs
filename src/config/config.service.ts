@@ -3,7 +3,9 @@ import * as nodeConfig from 'config';
 import { IAppConfig } from './interfaces/app-config.interface';
 
 // tslint:disable-next-line: no-var-requires
-const packageJson = require('../../package.json');
+import * as path from 'path';
+
+const packageInfo = require(path.join(process.cwd(), 'package.json'));
 
 @Injectable()
 export class ConfigService {
@@ -13,7 +15,7 @@ export class ConfigService {
 
     constructor() {
         this.config = nodeConfig.get('app');
-        this.appName = packageJson.name;
-        this.appVersion = packageJson.version;
+        this.appName = packageInfo.name;
+        this.appVersion = packageInfo.version;
     }
 }

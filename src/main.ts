@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import 'dotenv/config';
 import * as nodeConfig from 'config';
 import { AuditInterceptor } from './interceptors/audit.interceptor';
@@ -70,6 +71,7 @@ async function bootstrap() {
     app.use(
         helmet({
             crossOriginResourcePolicy: false,
+            contentSecurityPolicy: false,
         }),
     );
     app.useGlobalInterceptors(
